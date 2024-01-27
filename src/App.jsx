@@ -6,6 +6,9 @@ import Login from './Screens/Login/Login'
 import Main from './Screens/Main/Main'
 import { Divider, Stack } from '@mui/material'
 import SideBar from './Components/SideBar'
+import Home from './Screens/Home/Home'
+import Preview from './Screens/Preview/Preview.JSX'
+import Profile from './Screens/Profile/Profile'
 function App() {
   const location = useLocation();
   const [isLogin,setIsLogin] = useState(true)
@@ -29,11 +32,11 @@ function App() {
         <Routes>
           <Route path='/' element={<Login/>}/>
           <Route path='/registration' element={<Login/>}/>
-          <Route path='/home' element={<Main/>}/>
-          <Route path='/profile' element={<h1>profile</h1>}/>
-          <Route path='/settings' element={<h1>setting</h1>}/>
+          <Route path='/home' element={<Home/>}/>
+          <Route path='/profile' element={<Profile/>}/>
           <Route path='/rating' element={<h1>reting</h1>}/>
-          <Route path='/subjects' element={<h1>sujects</h1>}/>
+          <Route path='/subjects' element={<Main/>}/>
+          <Route path='/subjects/:id' element={<Preview/>}/>
           <Route path='/contacts' element={<h1>contacts</h1>}/>
         </Routes>
       </Stack>

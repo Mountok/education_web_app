@@ -7,18 +7,16 @@ import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
 import ThumbsUpDownIcon from '@mui/icons-material/ThumbsUpDown';
 import ContactSupportIcon from '@mui/icons-material/ContactSupport';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-const SideBarButtons = () => {
+const SideBarButtons = ({isOpen}) => {
     const location = useLocation();
     const navigate = useNavigate();
     const handleClick = (event,path) => {
         event.preventDefault();
-
         navigate(path)
     }
     const menuBox = [
         {path:'/home',title: 'Домой', icon: <Home/>},
         {path:'/profile',title: 'Профиль',icon: <AccountBoxIcon/>},
-        {path:'/settings',title: 'Настройки',icon: <SettingsSuggestIcon/>}
       ];
       const menuEducationBox = [
         {path:'/subjects',title: 'Предметы', icon: <LocalLibraryIcon/>},
@@ -28,13 +26,13 @@ const SideBarButtons = () => {
   return (
     <>
         <Divider  sx={{margin:'5px 0 10px 0'}}>
-            <Chip color='secondary'  size='medium' label='Меню'/>
+            <Chip color='primary'  size='medium' label='Меню'/>
         </Divider>
           {menuBox.map(el => 
             (
                 <ButtonGroup 
                     
-                    color='secondary' 
+                    color='primary' 
                     sx={{width: '90%',margin: '4px auto'}} 
                     fullWidth 
                     variant={location.pathname === el.path ? 'contained' : 'outlined'}>
@@ -44,12 +42,12 @@ const SideBarButtons = () => {
             )
           )}
         <Divider   sx={{margin:'10px 0'}}>
-            <Chip color='secondary' size='medium' label='Образование'/>
+            <Chip color='primary' size='medium' label='Образование'/>
         </Divider>
         {menuEducationBox.map(el => 
             (
                 <ButtonGroup 
-                    color='secondary' 
+                    color='primary' 
                     sx={{width: '90%',margin: '4px auto'}} 
                     fullWidth 
                     variant={location.pathname === el.path ? 'contained' : 'outlined'}>

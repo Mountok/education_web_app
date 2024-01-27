@@ -8,7 +8,6 @@ import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 
 
 import {  Drawer, styled } from '@mui/material';
@@ -52,7 +51,7 @@ const Header = () => {
   };
   return (
     <Box>
-    <AppBar  sx={{boxShadow: 'none',borderRadius: '10px'}} color='secondary' position="static">
+    <AppBar  sx={{borderRadius: '10px'}} color='primary' position="static">
       <Toolbar >
         <IconButton
           size="large"
@@ -69,14 +68,14 @@ const Header = () => {
         </Typography>
           <div>
             <IconButton
-              size="large"
+              size="medium"
               aria-label="account of current user"
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleMenu}
-              color="inherit"
+              color="primary"
             >
-              <AccountCircle />
+              <AccountCircle size="large"/>
             </IconButton>
             <Menu
               id="menu-appbar"
@@ -114,7 +113,7 @@ const Header = () => {
       >
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose} >
-            <ChevronLeftIcon color='secondary' /> 
+            <MenuIcon color='primary' /> 
           </IconButton>
         </DrawerHeader>
 

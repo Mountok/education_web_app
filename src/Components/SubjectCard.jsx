@@ -6,24 +6,27 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import {School} from '@mui/icons-material'
 import { Avatar, Button, CardHeader, Collapse, IconButton } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 const SubjectCard = ({id,image,title,subtitle}) => {
+  const navigate = useNavigate()
   return (
     <Card sx={{width: 345}}>
       <CardMedia
-        sx={{ height: 140 }}
-        image="/static/images/cards/contemplative-reptile.jpg"
+        
+        sx={{ 
+            height: 140,
+            
+        }}
+        image={`${image}`}
         title="green iguana"
       />
-      <CardContent>
+      <CardContent sx={{paddingBottom: 0}}>
         <Typography gutterBottom variant="h5" component="div">
           {title}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {subtitle}
-        </Typography>
       </CardContent>
-      <CardActions>
-        <Button  color='secondary' size="small" endIcon={<School/>} >Начать</Button>
+      <CardActions sx={{ paddingTop: 0}}>
+        <Button onClick={() => navigate('/subjects/1')} variant='contained'  color='primary' size="small" endIcon={<School/>} >Начать</Button>
       </CardActions>
     </Card>
     

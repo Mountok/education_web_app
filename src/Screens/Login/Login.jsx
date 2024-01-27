@@ -31,13 +31,13 @@ const Login = () => {
       <Container component="main" maxWidth="xs">
         <Box
           sx={{
-            margin: '50% auto',
+            margin: '30% auto',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
@@ -45,7 +45,7 @@ const Login = () => {
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField 
-              color='secondary'
+              color='primary'
               margin="normal"
               required
               fullWidth
@@ -56,7 +56,7 @@ const Login = () => {
               autoFocus
             />
             <TextField
-              color='secondary'
+              color='primary'
               margin="normal"
               required
               fullWidth
@@ -68,7 +68,7 @@ const Login = () => {
             />
             
             <Button
-              color='secondary'
+              color='primary'
               type="submit"
               fullWidth
               variant="contained"
