@@ -9,6 +9,7 @@ import SideBar from './Components/SideBar'
 import Home from './Screens/Home/Home'
 import Preview from './Screens/Preview/Preview.JSX'
 import Profile from './Screens/Profile/Profile'
+import Course from './Screens/CourseContent/Course'
 function App() {
   const location = useLocation();
   const [isLogin,setIsLogin] = useState(true)
@@ -37,6 +38,7 @@ function App() {
           <Route path='/rating' element={<h1>reting</h1>}/>
           <Route path='/subjects' element={<Main/>}/>
           <Route path='/subjects/:id' element={<Preview/>}/>
+          <Route path='/subjects/:id/:id' element={<Course/>}/>
           <Route path='/contacts' element={<h1>contacts</h1>}/>
         </Routes>
       </Stack>

@@ -57,8 +57,8 @@ const Preview = () => {
                 Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
                 eget.
               </Typography>
-              <Button sx={{mt:1}} size="small" color="primary" variant="outlined" endIcon={<School/>}>
-                начать
+              <Button sx={{mt:1}} size="small" color="primary" variant="outlined">
+              <School/>
               </Button>
             </AccordionDetails>
           </Accordion>
@@ -78,8 +78,8 @@ const Preview = () => {
                 Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
                 eget.
               </Typography>
-              <Button sx={{mt:1}} size="small" color="primary" variant="outlined" endIcon={<School/>}>
-                начать
+              <Button sx={{mt:1}} size="small" color="primary" variant="outlined">
+              <School/>
               </Button>
             </AccordionDetails>
           </Accordion>
@@ -99,8 +99,8 @@ const Preview = () => {
                 Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
                 eget.
               </Typography>
-              <Button sx={{mt:1}} size="small" color="primary" variant="outlined" endIcon={<School/>}>
-                начать
+              <Button sx={{mt:1}} size="small" color="primary" variant="outlined">
+              <School/>
               </Button>
             </AccordionDetails>
           </Accordion>
