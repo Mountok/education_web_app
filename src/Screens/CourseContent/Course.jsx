@@ -1,8 +1,9 @@
 import styled from '@emotion/styled';
 import { Box, Button, Stack, Typography } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./course.css"
-
+import axios from "axios"
+import { useLocation } from 'react-router-dom';
 
 
 const StyledBox = styled(Box)({
@@ -12,40 +13,52 @@ const StyledBox = styled(Box)({
 
 
 const Course = () => {
-  function createMarkup() {
-    return {__html: `
-    <h1 class="header_c" >Hello world</h1>
-    <p class="text_c">
-    Привет друзья добро пожаловать на первый урок по изучению языка текстовой разметки html.
-    </p>
-    <code class="code_c">
-      <p>console.log("hello")</p>
-      <p>console.log("hello")</p>
-      <p>console.log("hello")</p>
-      <p>console.log("hello")</p>
-    </code>
+  const [content,setContent] = useState([])
+  const location = useLocation()
+
+  useEffect(()=>{
+    getContent()
     
-    `};
+    
+  },[])
+
+  const getContent = async () => {
+    const apiUrl = `http://localhost:8080/api/lessons/${location.pathname.split('/')[2]}/${location.pathname.split('/')[3]}`;
+    await axios.get(apiUrl).then((resp) => {
+      const lessonContent = resp.data.data;
+      setContent([lessonContent]);
+    });
+  }
+
+  
+
+
+  function createMarkup(str) {
+    return {__html: str};
   }
   
-  function MyComponent() {
-    return <div dangerouslySetInnerHTML={createMarkup()} />;
+  function MyComponent({str}) {
+    return <div className='content' dangerouslySetInnerHTML={createMarkup(str)} />;
   }
   return (
-    <Stack flex={7} gap={2} mt={3}>
-    <StyledBox p={2}>
-      <Typography color="primary" variant="h5">
-        Название главы
-      </Typography>
-      <Stack mt={1} direction="column" gap={1}>
-          <MyComponent/>
-      </Stack>
+    <>
+     <Stack flex={7} gap={2} mt={1}>
+    <StyledBox p={3}>
+
+      {content.map(el => (
+        <Stack key={el.id} mt={0} direction="column" p={1} gap={1}>
+        <MyComponent str={el.upkeep}/>
+        </Stack>
+      ))}
+      
       <Stack mt={1} direction="column" gap={1}>
         <Button variant='contained' >Продолжить</Button>
       </Stack>
     </StyledBox>
     
   </Stack>
+    </>
+    
   )
 }
 

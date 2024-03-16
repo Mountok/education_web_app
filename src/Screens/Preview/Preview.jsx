@@ -1,112 +1,102 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Chip, Stack, Typography, styled } from "@mui/material";
 import  {ExpandMore, School, CheckBoxOutlined, CheckBoxOutlineBlank} from '@mui/icons-material';
+import axios from "axios"
+import { useLocation, useNavigate } from "react-router-dom";
 const StyledBox = styled(Box)({
   borderRadius: "10px",
   boxShadow: "0 2px 5px #cbcbcb",
 });
 
 const Preview = () => {
+  const location = useLocation()
+  const navigate = useNavigate()
+  const [subjectId,setSubjectId] = useState(location.pathname.split("/")[2])
+  const [themesState,setThemesState] = useState([])
+  const [subjectState,setSubjectState] = useState([])
+
+
+  useEffect(()=>{
+    const apiUrlT = `http://localhost:8080/api/themes/${subjectId}`;
+    const apiUrlS = `http://localhost:8080/api/subject/${subjectId}`;
+    axios.get(apiUrlT).then((resp) => {
+      const allThemes = resp.data.data;
+      // console.log(resp.data)
+      setThemesState(allThemes);
+    });
+    axios.get(apiUrlS).then((resp) => {
+      const Subject = resp.data.data;
+      // console.log(resp.data)
+      setSubjectState(Subject);
+    });
+  },[])
+
   return (
-    <Stack flex={7} gap={2} mt={3}>
-      <StyledBox p={2}>
-        <Typography color="primary" variant="h3">
-          Верстка сайтов
-        </Typography>
-        <Stack mt={1} direction="row" gap={0.5}>
-          <Chip size="small" variant="outlined" label="html" />
-          <Chip size="small" variant="outlined" label="css" />
-          <Chip size="small" variant="outlined" label="javascript" />
-        </Stack>
-      </StyledBox>
-      <StyledBox p={2}>
-        <Typography color="primary" variant="h5">
-          О курсе
-        </Typography>
-        <Stack mt={1} direction="row" gap={1}>
-          <Typography variant="body1">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus,
-            cum ducimus mollitia explicabo deleniti voluptates eum culpa ut
-            porro ab ex iste pariatur voluptatem commodi numquam? Repellendus
-            aut obcaecati totam. Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Quia placeat officiis voluptates soluta unde
-            assumenda commodi optio delectus! Enim sint accusantium alias
-            quisquam voluptate, explicabo cupiditate similique veniam incidunt
-            mollitia?
+    <>
+      {subjectState.map(el1 => (
+        <Stack key={el1.id} flex={7} gap={2} mt={3}>
+
+        <StyledBox p={2}>
+          <Typography color="primary" variant="h3">
+            {el1.title}
           </Typography>
-        </Stack>
-      </StyledBox>
-      <StyledBox p={2}>
-        <Typography color="primary" variant="h5">
-          Содержание курса
-        </Typography>
-        <Stack mt={1} direction="column" gap={1}>
-          <Accordion sx={{boxShadow: 'none'}} disableGutters>
-            <AccordionSummary   
-                
-              expandIcon={<ExpandMore color="primary"/>}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
-
-              <Typography>Введение</Typography>
-            </AccordionSummary>
-            <AccordionDetails >
-              <Typography>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                eget.
-              </Typography>
-              <Button sx={{mt:1}} size="small" color="primary" variant="outlined">
-              <School/>
-              </Button>
-            </AccordionDetails>
-          </Accordion>
-
-          <Accordion sx={{boxShadow:'none'}} disableGutters>
-            <AccordionSummary
-              expandIcon={<ExpandMore color="primary" />}
-              aria-controls="panel2a-content"
-              id="panel2a-header"
-            >
-
-              <Typography>HTML</Typography>
-            </AccordionSummary>
-            <AccordionDetails >
-              <Typography >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                eget.
-              </Typography>
-              <Button sx={{mt:1}} size="small" color="primary" variant="outlined">
-              <School/>
-              </Button>
-            </AccordionDetails>
-          </Accordion>
-          
-          <Accordion sx={{boxShadow:'none'}} disableGutters >
-            <AccordionSummary
-              expandIcon={<ExpandMore color="primary" />}
-              aria-controls="panel3a-content"
-              id="panel3a-header"
-            >
-
-              <Typography>Тег Div</Typography>
-            </AccordionSummary>
-            <AccordionDetails >
-              <Typography>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                eget.
-              </Typography>
-              <Button sx={{mt:1}} size="small" color="primary" variant="outlined">
-              <School/>
-              </Button>
-            </AccordionDetails>
-          </Accordion>
-        </Stack>
-      </StyledBox>
-    </Stack>
+          <Stack mt={1} direction="row" gap={0.5}>
+            <Chip size="small" variant="outlined" label="html" />
+            <Chip size="small" variant="outlined" label="css" />
+            <Chip size="small" variant="outlined" label="javascript" />
+          </Stack>
+        </StyledBox>
+        <StyledBox p={2}>
+          <Typography color="primary" variant="h5">
+            О курсе
+          </Typography>
+          <Stack mt={1} direction="row" gap={1}>
+            <Typography variant="body1">
+            {el1.description}
+            </Typography>
+          </Stack>
+        </StyledBox>
+        <StyledBox p={2}>
+          <Typography color="primary" variant="h5">
+            Содержание курса
+          </Typography>
+          <Stack mt={1} direction="column" gap={1}>
+  
+            {themesState ?
+            themesState.map(el => (
+            <Accordion key={el.id} sx={{boxShadow: 'none'}} disableGutters>
+              <AccordionSummary   
+                  
+                expandIcon={<ExpandMore color="primary"/>}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+  
+                <Typography>{el.title}</Typography>
+              </AccordionSummary>
+              <AccordionDetails >
+                <Typography>
+                {el.description}
+                </Typography>
+                <Button onClick={()=>navigate(`/subjects/${el1.id}/${el.id}`)}  sx={{mt:1}} size="small" color="primary" variant="outlined">
+                <School/>
+                </Button>
+              </AccordionDetails>
+            </Accordion>
+            )) :
+              <p>Загрузка...</p>
+            }
+  
+            
+  
+  
+          </Stack>
+        </StyledBox>
+      </Stack>
+      ))}
+    </>
+    
+    
   );
 };
 

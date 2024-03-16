@@ -31,7 +31,7 @@ const SideBarButtons = ({isOpen}) => {
           {menuBox.map(el => 
             (
                 <ButtonGroup 
-                    
+                    key={el.title}
                     color='primary' 
                     sx={{width: '90%',margin: '4px auto'}} 
                     fullWidth 
@@ -47,6 +47,7 @@ const SideBarButtons = ({isOpen}) => {
         {menuEducationBox.map(el => 
             (
                 <ButtonGroup 
+                    key={el.title}
                     color='primary' 
                     sx={{width: '90%',margin: '4px auto'}} 
                     fullWidth 

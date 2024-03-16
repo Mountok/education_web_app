@@ -1,8 +1,19 @@
-import { Box, Divider, Stack } from '@mui/material'
-import React from 'react'
+import { Box } from '@mui/material'
+import React, { useEffect, useState } from 'react'
 import SubjectCard from '../../Components/SubjectCard'
-
+import axios from 'axios'
 const Main = () => {
+  const [subjectsState,setSubjectsState] = useState([])
+
+  useEffect(()=>{
+    const apiUrl = 'http://localhost:8080/api/subject';
+    axios.get(apiUrl).then((resp) => {
+      const allSubjects = resp.data.data;
+      console.log(resp.data)
+      setSubjectsState(allSubjects);
+    });
+  },[])
+
   return (
       <Box mt={3} flex={7} gap={3} sx={{
         
@@ -11,24 +22,21 @@ const Main = () => {
         justifyContent: 'center',
         alignItems:'flex-start'
       }}>
+
         {/* subtitle max length = 110 sybols  */}
-        <SubjectCard 
-        image='https://avatars.mds.yandex.net/i?id=631c94619b8de748699d8e8caa9103a54dd8b857-10871821-images-thumbs&n=13' 
-        title='Веб-разработка' 
-        subtitle='
-        Процесс создания веб-сайта или веб-приложения.
-        Основными этапами процесса являются: веб-дизайн, 
-        вёрстка страниц.
-        '/>
 
-        <SubjectCard 
-        image='https://avatars.mds.yandex.net/i?id=d7d9ed631cb66f05cf694ecba7139aba09bdcada-10638416-images-thumbs&n=13' 
-        title='Базы данных SQL' 
-        subtitle='
-        Процесс создания веб-сайта или веб-приложения. 
-        Основными этапами процесса на стороне клиента и сервера.
-        '/>
+        {subjectsState.map(el => (
+          <SubjectCard 
+          id={el.id}
+          key={el.id}
+          image={"http://localhost:8080/images?id="+el.image}
+          title={el.title}
+          subtitle={el.description}
+          />
+        ))}
+        
 
+       
         
       </Box>
   )

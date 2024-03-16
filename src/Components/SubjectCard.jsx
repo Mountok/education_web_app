@@ -26,7 +26,7 @@ const SubjectCard = ({id,image,title,subtitle}) => {
         </Typography>
       </CardContent>
       <CardActions sx={{ paddingTop: 0}}>
-        <Button onClick={() => navigate('/subjects/1')} variant='contained'  color='primary' size="small" endIcon={<School/>} >Начать</Button>
+        <Button onClick={() => navigate(`/subjects/${id}`)} variant='contained'  color='primary' size="small" endIcon={<School/>} >Начать</Button>
       </CardActions>
     </Card>
     
