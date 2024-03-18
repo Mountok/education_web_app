@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Chip, Stack, Typography, styled } from "@mui/material";
+import { Accordion, AccordionDetails, AccordionSummary, Box, Button, CardMedia, Chip, Stack, Typography, styled } from "@mui/material";
 import  {ExpandMore, School, CheckBoxOutlined, CheckBoxOutlineBlank} from '@mui/icons-material';
 import axios from "axios"
 import { useLocation, useNavigate } from "react-router-dom";
@@ -7,7 +7,7 @@ const StyledBox = styled(Box)({
   borderRadius: "10px",
   boxShadow: "0 2px 5px #cbcbcb",
 });
-
+import "./prevStyle.css"
 const Preview = () => {
   const location = useLocation()
   const navigate = useNavigate()
@@ -37,6 +37,16 @@ const Preview = () => {
         <Stack key={el1.id} flex={7} gap={2} mt={3}>
 
         <StyledBox p={2}>
+        <CardMedia
+        
+        sx={{ 
+            height: 250,
+            borderRadius: "10px"
+        }}
+        image={`http://localhost:8080/images?id=${el1.image}`}
+        title="green iguana"
+      />
+
           <Typography color="primary" variant="h3">
             {el1.title}
           </Typography>

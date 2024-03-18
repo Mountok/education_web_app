@@ -10,12 +10,11 @@ import { useNavigate } from 'react-router-dom';
 const SubjectCard = ({id,image,title,subtitle}) => {
   const navigate = useNavigate()
   return (
-    <Card sx={{width: 345}}>
+    <Card sx={{width: 345,boxShadow: "0 0 5px 1px rgba(0,0,0,0.50)"}}>
       <CardMedia
         
         sx={{ 
             height: 140,
-            
         }}
         image={`${image}`}
         title="green iguana"
