@@ -16,6 +16,7 @@ import { useLocation, Link, useNavigate } from 'react-router-dom';
 const Login = () => {
   const location = useLocation();
   const navigate = useNavigate()
+
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
@@ -23,6 +24,11 @@ const Login = () => {
           email: data.get('email'),
           password: data.get('password'),
         });
+        if (location.pathname == '/registration') {
+          console.log("reg logic")
+        } else {
+          console.log("log in logic")
+        }
         navigate('/home')
       };
     
@@ -53,6 +59,7 @@ const Login = () => {
               name="email"
               autoComplete="email"
               autoFocus
+              placeholder='example@email.com'
             />
             <TextField
               color='primary'
