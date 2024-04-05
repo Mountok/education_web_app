@@ -17,8 +17,8 @@ const Preview = () => {
 
 
   useEffect(()=>{
-    const apiUrlT = `http://localhost:8080/api/themes/${subjectId}`;
-    const apiUrlS = `http://localhost:8080/api/subject/${subjectId}`;
+    const apiUrlT = `/api/themes/${subjectId}`;
+    const apiUrlS = `/api/subject/${subjectId}`;
     axios.get(apiUrlT).then((resp) => {
       const allThemes = resp.data.data;
       // console.log(resp.data)

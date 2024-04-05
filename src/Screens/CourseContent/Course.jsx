@@ -23,7 +23,7 @@ const Course = () => {
   },[])
 
   const getContent = async () => {
-    const apiUrl = `http://localhost:8080/api/lessons/${location.pathname.split('/')[2]}/${location.pathname.split('/')[3]}`;
+    const apiUrl = `/api/lessons/${location.pathname.split('/')[2]}/${location.pathname.split('/')[3]}`;
     await axios.get(apiUrl).then((resp) => {
       const lessonContent = resp.data.data;
       setContent([lessonContent]);

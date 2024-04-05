@@ -6,7 +6,7 @@ const Main = () => {
   const [subjectsState,setSubjectsState] = useState([])
 
   useEffect(()=>{
-    const apiUrl = 'http://localhost:8080/api/subject';
+    const apiUrl = '/api/subject';
     axios.get(apiUrl).then((resp) => {
       const allSubjects = resp.data.data;
       console.log(resp.data)

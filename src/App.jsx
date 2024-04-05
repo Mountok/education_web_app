@@ -10,6 +10,8 @@ import Home from './Screens/Home/Home'
 import Preview from './Screens/Preview/Preview.JSX'
 import Profile from './Screens/Profile/Profile'
 import Course from './Screens/CourseContent/Course'
+
+
 function App() {
   const location = useLocation();
   const [isLogin,setIsLogin] = useState(true)
